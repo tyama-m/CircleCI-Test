@@ -1,26 +1,57 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+#--------------------------------------------------------
+#　仮想マシンの定義
+#--------------------------------------------------------
+orbs:
+  win: circleci/windows@4.0
+
+#--------------------------------------------------------
+#　各JOBの定義
+#--------------------------------------------------------
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  build:
+    executor:
+      name: win/default
+      size: "medium"
+
+    working_directory: c:/project
+
     steps:
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+      # - run:
+      #     name: "go build."
+      #     shell: powershell.exe
+      #     command: go build main.go
+
+      # - run:
+      #     name: "Install SharePoint SDK."
+      #     shell: powershell.exe
+      #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/SharPointSDK_Installer.ps1
+
+      # - run:
+      #     name: "zip compress."
+      #     shell: powershell.exe
+      #     command: compress-archive -Path c:/project/main.exe -DestinationPath c:/project/main.zip
+
+      # - run:
+      #     name: "Deploy Binary."
+      #     shell: powershell.exe
+      #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -AccountName ${AccountName} -Pword ${Pword}
+
+      - run:
+          name: "echo"
+          shell: powershell.exe
+          command: |
+            echo 'AccountName = '${MY_ENV_USER:0:-4}
+            echo 'Pword = '${Pword}
+
+#--------------------------------------------------------
+#　ワークフローの定義
+#--------------------------------------------------------
 workflows:
-  say-hello-workflow:
+  version: 2.1
+  ci_workflow:
     jobs:
-      - say-hello
+      - build
