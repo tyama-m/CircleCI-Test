@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 jobs:
   get_envs:
@@ -8,7 +8,7 @@ jobs:
       - run:
           name: test
           command: |
-            echo 'MY_ENV_USER: '${MY_ENV_USER}
+            echo 'MY_ENV_USER: '$MY_ENV_USER
 
 workflows:
   version: 2
