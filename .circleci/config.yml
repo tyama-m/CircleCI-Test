@@ -35,15 +35,15 @@ jobs:
       #     shell: powershell.exe
       #     command: compress-archive -Path c:/project/main.exe -DestinationPath c:/project/main.zip
 
-      # - run:
-      #     name: "Deploy Binary."
-      #     shell: powershell.exe
-      #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -AccountName ${AccountName} -Pword ${Pword}
-
       - run:
-          name: "echo"
+          name: "Deploy Binary."
           shell: bash.exe
-          command: echo 'AccountName = '$MY_ENV_USER
+          command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -AccountName ${MY_ENV_USER}
+
+      # - run:
+      #     name: "echo"
+      #     shell: bash.exe
+      #     command: echo 'AccountName = '$MY_ENV_USER
 
 #--------------------------------------------------------
 #　ワークフローの定義
