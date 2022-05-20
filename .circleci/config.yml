@@ -1,17 +1,55 @@
 version: 2.1
 
-jobs:
-  get_envs:
-    docker:
-      - image: circleci/hello
-    steps:
-      - run:
-          name: test
-          command: |
-            echo 'MY_ENV_USER: '$MY_ENV_USER
+#--------------------------------------------------------
+#　仮想マシンの定義
+#--------------------------------------------------------
+orbs:
+  win: circleci/windows@4.0
 
+#--------------------------------------------------------
+#　各JOBの定義
+#--------------------------------------------------------
+jobs:
+  build:
+    executor:
+      name: win/default
+      size: "medium"
+
+    working_directory: c:/project
+
+    steps:
+      - checkout
+
+      # - run:
+      #     name: "go build."
+      #     shell: powershell.exe
+      #     command: go build main.go
+
+      # - run:
+      #     name: "Install SharePoint SDK."
+      #     shell: powershell.exe
+      #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/SharPointSDK_Installer.ps1
+
+      # - run:
+      #     name: "zip compress."
+      #     shell: powershell.exe
+      #     command: compress-archive -Path c:/project/main.exe -DestinationPath c:/project/main.zip
+
+      # - run:
+      #     name: "Deploy Binary."
+      #     shell: powershell.exe
+      #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -AccountName ${AccountName} -Pword ${Pword}
+
+      - run: ""
+          name: "echo"
+          shell: bash.exe
+          command: echo 'AccountName = '$MY_ENV_USER
+
+#--------------------------------------------------------
+#　ワークフローの定義
+#--------------------------------------------------------
 workflows:
-  version: 2
-  workflow:
+  version: 2.1
+  ci_workflow:
     jobs:
-      - get_envs
+      - build
