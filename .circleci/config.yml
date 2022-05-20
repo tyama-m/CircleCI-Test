@@ -40,9 +40,7 @@ jobs:
       #     shell: powershell.exe
       #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -AccountName ${AccountName} -Pword ${Pword}
 
-      - run:
-          name: "echo"
-          command: echo 'AccountName = ' $MY_ENV_USER
+      - run: echo 'AccountName = ' $MY_ENV_USER
 
 #--------------------------------------------------------
 #　ワークフローの定義
