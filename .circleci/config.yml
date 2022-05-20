@@ -43,7 +43,7 @@ jobs:
       - run:
           name: "echo"
           shell: powershell.exe
-          command: echo 'AccountName = ' MY_ENV_USER
+          command: echo 'AccountName = ' $MY_ENV_USER
 
 #--------------------------------------------------------
 #　ワークフローの定義
