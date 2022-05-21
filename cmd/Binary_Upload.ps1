@@ -4,10 +4,9 @@
        [string]$Pword = "" )
 
 
+Write-host $ParentName -f Green
 Write-host $AccountName -f Green
 Write-host $Pword -f Green
-
-exit
 
 #.NET CSOM モジュールの読み込み
 # SharePoint Online Client Components SDK をダウンロードする
@@ -19,7 +18,7 @@ exit
 
 
 #SharePointに接続する
-$siteUrl = "https://fonts.sharepoint.com/sites/devdep"
+$siteUrl = $ParentName
 $ctx = New-Object Microsoft.SharePoint.Client.ClientContext($siteUrl)
 
 $accountName = $AccountName
@@ -40,9 +39,10 @@ $ctx.ExecuteQuery()
 # $ctx.ExecuteQuery()
 
 # アップロードファイル名を作成する
-$Commit = $CommitKey.Substring(0, 7)
-$UploadFileName = "main_" + $Commit + ".zip"
-Write-host $UploadFileName -f Green
+# $Commit = $CommitKey.Substring(0, 7)
+# $UploadFileName = "main_" + $Commit + ".zip"
+# Write-host $UploadFileName -f Green
+$UploadFileName = "MorisawaDesktopManager_" + $(Get-Date).ToString("yyyyMMddHHmmss") + ".zip"
 
 # ファイルを追加する
 $FileStream = ([System.IO.FileInfo] (Get-Item "c:/project/main.zip")).OpenRead()
