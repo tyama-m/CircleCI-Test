@@ -8,6 +8,8 @@ Write-host $ParentName -f Green
 Write-host $AccountName -f Green
 Write-host $Pword -f Green
 
+exit
+
 #.NET CSOM モジュールの読み込み
 # SharePoint Online Client Components SDK をダウンロードする
 # https://www.microsoft.com/en-us/download/details.aspx?id=42038
@@ -45,7 +47,7 @@ $ctx.ExecuteQuery()
 $UploadFileName = "MorisawaDesktopManager_" + $(Get-Date).ToString("yyyyMMddHHmmss") + ".zip"
 
 # ファイルを追加する
-$FileStream = ([System.IO.FileInfo] (Get-Item "c:/project/main.zip")).OpenRead()
+$FileStream = ([System.IO.FileInfo] (Get-Item "D:/GitHub/CircleCI-Test/main.zip")).OpenRead()
 
 $FileCreationInfo = New-Object Microsoft.SharePoint.Client.FileCreationInformation
 $FileCreationInfo.Overwrite = $true

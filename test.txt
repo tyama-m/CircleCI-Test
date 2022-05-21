@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy RemoteSigned D:/GitHub/CircleCI-Test/cmd/Binary_Upload.ps1 -ParentName "Shared%20Documents/10_Project/0900-0-01_MP-Cloud(0008,0011,0013)/Desktop%20Manager%20(DM)/tmp/CICD" -AccountName "tyama@morisawa.co.jp" -Pword "Toshio1040Office365"
