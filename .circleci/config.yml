@@ -39,10 +39,7 @@ jobs:
           name: "Deploy Binary."
           shell: bash.exe
           command: |
-            powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1
-            -ParentName ${SITE_PATH}
-            -AccountName ${MY_ENV_USER}
-            -Pword ${PWD}
+            powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -ParentName ${SITE_PATH} -AccountName ${MY_ENV_USER} -Pword ${PWD}
 
       # - run:
       #     name: "echo"

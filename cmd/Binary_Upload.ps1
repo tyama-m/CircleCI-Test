@@ -18,7 +18,7 @@ Write-host $Pword -f Green
 
 
 #SharePointに接続する
-$siteUrl = $ParentName
+$siteUrl = "https://fonts.sharepoint.com/sites/devdep"
 $ctx = New-Object Microsoft.SharePoint.Client.ClientContext($siteUrl)
 
 $accountName = $AccountName
