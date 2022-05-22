@@ -1,11 +1,7 @@
-﻿Param([string]$AccountName, [string]$Pword)
+﻿Param([string]$Pword)
 
-Write-host $AccountName.Substring(0, 6) -f Green
 Write-host $Pword.Substring(0,6) -f Green
 
-
-
-exit
 #.NET CSOM モジュールの読み込み
 # SharePoint Online Client Components SDK をダウンロードする
 # https://www.microsoft.com/en-us/download/details.aspx?id=42038
@@ -19,7 +15,7 @@ exit
 $siteUrl = "https://fonts.sharepoint.com/sites/devdep"
 $ctx = New-Object Microsoft.SharePoint.Client.ClientContext($siteUrl)
 
-$accountName = $AccountName
+$accountName = "tyama@morisawa.co.jp"
 $password = ConvertTo-SecureString -AsPlainText -Force $Pword
 $credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($accountName, $password)
 $ctx.Credentials = $credentials
@@ -30,6 +26,11 @@ $folderURL = $siteUrl + "/" + $ParentName
 $folder = $ctx.Web.GetFolderByServerRelativeUrl($folderURL)
 $ctx.Load($folder)
 $ctx.ExecuteQuery()
+
+#DEBUG
+$ctx.Dispose()
+exit
+#DEBUG
 
 # フォルダーを追加する
 # $newfolder = "0200-1-01_MDM-Installer"
