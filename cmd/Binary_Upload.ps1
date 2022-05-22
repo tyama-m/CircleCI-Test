@@ -1,8 +1,11 @@
 ﻿Param([string]$AccountName, [string]$Pword)
 
-Write-host $AccountName -f Green
-Write-host $Pword -f Green
+Write-host $AccountName.Substring(0, 6) -f Green
+Write-host $Pword.Substring(0,6) -f Green
 
+
+
+exit
 #.NET CSOM モジュールの読み込み
 # SharePoint Online Client Components SDK をダウンロードする
 # https://www.microsoft.com/en-us/download/details.aspx?id=42038
