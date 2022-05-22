@@ -20,20 +20,20 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: "go build."
-          shell: powershell.exe
-          command: go build main.go
+      # - run:
+      #     name: "go build."
+      #     shell: powershell.exe
+      #     command: go build main.go
 
       - run:
           name: "Install SharePoint SDK."
           shell: powershell.exe
           command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/SharPointSDK_Installer.ps1
 
-      - run:
-          name: "zip compress."
-          shell: powershell.exe
-          command: compress-archive -Path c:/project/main.exe -DestinationPath c:/project/main.zip
+      # - run:
+      #     name: "zip compress."
+      #     shell: powershell.exe
+      #     command: compress-archive -Path c:/project/main.exe -DestinationPath c:/project/main.zip
 
       - run:
           name: "Deploy Binary."
