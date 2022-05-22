@@ -1,10 +1,5 @@
-﻿Param( [string]$ParentName = "",
-       [string]$CommitKey = "",
-       [string]$AccountName = "",
-       [string]$Pword = "" )
+﻿Param( [string]$CommitKey, [string]$AccountName, [string]$Pword)
 
-
-Write-host $ParentName -f Green
 Write-host $AccountName -f Green
 Write-host $Pword -f Green
 
