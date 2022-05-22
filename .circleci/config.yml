@@ -18,17 +18,17 @@ jobs:
     working_directory: c:/project
 
     steps:
-      - checkout
+      # - checkout
 
       # - run:
       #     name: "go build."
       #     shell: powershell.exe
       #     command: go build main.go
 
-      - run:
-          name: "Install SharePoint SDK."
-          shell: powershell.exe
-          command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/SharPointSDK_Installer.ps1
+      # - run:
+      #     name: "Install SharePoint SDK."
+      #     shell: powershell.exe
+      #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/SharPointSDK_Installer.ps1
 
       # - run:
       #     name: "zip compress."
@@ -36,11 +36,14 @@ jobs:
       #     command: compress-archive -Path c:/project/main.exe -DestinationPath c:/project/main.zip
 
       - run:
-          name: "Deploy Binary."
+          name: "Print Env."
           shell: bash.exe
-          command: |
-            echo ${MY_ENV_USER}
-            powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -AccountName ${MY_ENV_USER} -Pword ${PWD}
+          command: echo ${MY_ENV_USER}
+
+      # - run:
+      #     name: "Deploy Binary."
+      #     shell: bash.exe
+      #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -AccountName ${MY_ENV_USER} -Pword ${PWD}
 
       # - run:
       #     name: "echo"
