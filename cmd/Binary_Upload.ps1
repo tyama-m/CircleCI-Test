@@ -1,6 +1,6 @@
 ﻿Param([string]$Pword)
 
-Write-host $Pword.Substring(0,10) -f Green
+#Write-host $Pword.Substring(0,10) -f Green
 
 #.NET CSOM モジュールの読み込み
 # SharePoint Online Client Components SDK をダウンロードする
@@ -26,11 +26,6 @@ $folderURL = $siteUrl + "/" + $ParentName
 $folder = $ctx.Web.GetFolderByServerRelativeUrl($folderURL)
 $ctx.Load($folder)
 $ctx.ExecuteQuery()
-
-#DEBUG
-$ctx.Dispose()
-exit
-#DEBUG
 
 # フォルダーを追加する
 # $newfolder = "0200-1-01_MDM-Installer"

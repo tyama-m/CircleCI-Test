@@ -25,10 +25,10 @@ jobs:
       #     shell: powershell.exe
       #     command: go build main.go
 
-      # - run:
-      #     name: "Install SharePoint SDK."
-      #     shell: powershell.exe
-      #     command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/SharPointSDK_Installer.ps1
+      - run:
+          name: "Install SharePoint SDK."
+          shell: powershell.exe
+          command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/SharPointSDK_Installer.ps1
 
       # - run:
       #     name: "zip compress."
