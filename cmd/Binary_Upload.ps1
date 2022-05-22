@@ -1,4 +1,4 @@
-﻿Param( [string]$CommitKey, [string]$AccountName, [string]$Pword)
+﻿Param([string]$AccountName, [string]$Pword)
 
 Write-host $AccountName -f Green
 Write-host $Pword -f Green
