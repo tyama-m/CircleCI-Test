@@ -1,6 +1,6 @@
 ﻿Param([string]$Pword)
 
-Write-host $Pword.Substring(0,6) -f Green
+Write-host $Pword.Substring(0,10) -f Green
 
 #.NET CSOM モジュールの読み込み
 # SharePoint Online Client Components SDK をダウンロードする
