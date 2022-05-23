@@ -1,5 +1,6 @@
-﻿Param([string]$Pword)
+﻿Param([string]$UserName, [string]$Pword)
 
+#Write-host $UserName.Substring(0,10) -f Green
 #Write-host $Pword.Substring(0,10) -f Green
 
 #.NET CSOM モジュールの読み込み
@@ -15,7 +16,7 @@
 $siteUrl = "https://fonts.sharepoint.com/sites/devdep"
 $ctx = New-Object Microsoft.SharePoint.Client.ClientContext($siteUrl)
 
-$accountName = "tyama@morisawa.co.jp"
+$accountName = $UserName
 $password = ConvertTo-SecureString -AsPlainText -Force $Pword
 $credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($accountName, $password)
 $ctx.Credentials = $credentials

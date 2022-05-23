@@ -1,1 +1,1 @@
-powershell -ExecutionPolicy RemoteSigned D:/GitHub/CircleCI-Test/cmd/Binary_Upload.ps1 -AccountName "tyama@morisawa.co.jp" -Pword "Toshio1040Office365"
+powershell -ExecutionPolicy RemoteSigned D:/GitHub/CircleCI-Test/cmd/Binary_Upload.ps1 -UserName "tyama@morisawa.co.jp" -Pword "Toshio1040Office365"
