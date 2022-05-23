@@ -38,7 +38,14 @@ jobs:
       - run:
           name: "Deploy Binary."
           shell: bash.exe
-          command: powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1 -Commit ${CIRCLE_SHA1} -UserName ${MY_ENV_USER} -Pword ${MY_ENV_PWD}
+          command: |
+            powershell -ExecutionPolicy RemoteSigned c:/project/cmd/Binary_Upload.ps1
+              -ParentName ${MY_ENV_PARENT_NAME}
+              -Commit ${CIRCLE_SHA1}
+              -UserName ${MY_ENV_USER}
+              -Pword ${MY_ENV_PWD}
+              -CopyFileName "c:/project/main.zip"
+              -FileExt "zip"
 
       # - run:
       #     name: "echo"

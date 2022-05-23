@@ -1,16 +1,22 @@
-﻿Param([string]$CommitKey, [string]$UserName, [string]$Pword)
+﻿Param(  [string]$ParentName,
+        [string]$CommitKey,
+        [string]$UserName,
+        [string]$Pword,
+        [string]$CopyFileName,
+        [string]$FileExt)
 
-Write-host $CommitKey.Substring(0,10) -f Green
-Write-host $UserName.Substring(0,10) -f Green
-Write-host $Pword.Substring(0,10) -f Green
+Write-host "ParentName = " + $ParentName.Substring(0,10) -f Green
+Write-host "CommitKey = " + $CommitKey.Substring(0,10) -f Green
+Write-host "UserName = " + $UserName.Substring(0,10) -f Green
+Write-host "Pword = " + $Pword.Substring(0,10) -f Green
+Write-host "CopyFileName = " + $CopyFileName.Substring(0,10) -f Green
+Write-host "FileExt = " + $FileExt.Substring(0,3) -f Green
 
 #.NET CSOM モジュールの読み込み
 # SharePoint Online Client Components SDK をダウンロードする
 # https://www.microsoft.com/en-us/download/details.aspx?id=42038
 [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SharePoint.Client") | Out-Null
 [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SharePoint.Client.Runtime") | Out-Null
-# [System.Net.WebRequest]::GetSystemWebProxy()
-# [System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultCredentials
 
 
 #SharePointに接続する
@@ -23,7 +29,6 @@ $credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredential
 $ctx.Credentials = $credentials
 
 #ドキュメントライブラリに接続する
-$ParentName = "Shared%20Documents%2F10%5FProject%2F0900%2D0%2D01%5FMP%2DCloud%280008%2C0011%2C0013%29%2FDesktop%20Manager%20%28DM%29%2Ftmp%2FCICD"
 $folderURL = $siteUrl + "/" + $ParentName
 $folder = $ctx.Web.GetFolderByServerRelativeUrl($folderURL)
 $ctx.Load($folder)
@@ -37,13 +42,12 @@ $ctx.ExecuteQuery()
 
 # アップロードファイル名を作成する
 $Commit = $CommitKey.Substring(0, 7)
-$UploadFileName = "MorisawaDesktopManager_" + $Commit + ".zip"
+$UploadFileName = "MorisawaDesktopManager_" + $Commit + "." + $FileExt
 # $UploadFileName = "MorisawaDesktopManager_" + $(Get-Date).ToString("yyyyMMddHHmmss") + ".zip"
 # Write-host $UploadFileName -f Green
 
 # ファイルを追加する
-#$FileStream = ([System.IO.FileInfo] (Get-Item "D:/GitHub/CircleCI-Test/main.zip")).OpenRead() DEBUG用
-$FileStream = ([System.IO.FileInfo] (Get-Item "c:/project/main.zip")).OpenRead()
+$FileStream = ([System.IO.FileInfo] (Get-Item $CopyFileName)).OpenRead()
 
 $FileCreationInfo = New-Object Microsoft.SharePoint.Client.FileCreationInformation
 $FileCreationInfo.Overwrite = $true
