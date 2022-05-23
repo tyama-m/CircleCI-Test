@@ -1,7 +1,8 @@
-﻿Param([string]$UserName, [string]$Pword)
+﻿Param([string]$CommitKey, [string]$UserName, [string]$Pword)
 
-#Write-host $UserName.Substring(0,10) -f Green
-#Write-host $Pword.Substring(0,10) -f Green
+Write-host $CommitKey.Substring(0,10) -f Green
+Write-host $UserName.Substring(0,10) -f Green
+Write-host $Pword.Substring(0,10) -f Green
 
 #.NET CSOM モジュールの読み込み
 # SharePoint Online Client Components SDK をダウンロードする
@@ -35,10 +36,10 @@ $ctx.ExecuteQuery()
 # $ctx.ExecuteQuery()
 
 # アップロードファイル名を作成する
-# $Commit = $CommitKey.Substring(0, 7)
-# $UploadFileName = "main_" + $Commit + ".zip"
+$Commit = $CommitKey.Substring(0, 7)
+$UploadFileName = "MorisawaDesktopManager_" + $Commit + ".zip"
+# $UploadFileName = "MorisawaDesktopManager_" + $(Get-Date).ToString("yyyyMMddHHmmss") + ".zip"
 # Write-host $UploadFileName -f Green
-$UploadFileName = "MorisawaDesktopManager_" + $(Get-Date).ToString("yyyyMMddHHmmss") + ".zip"
 
 # ファイルを追加する
 #$FileStream = ([System.IO.FileInfo] (Get-Item "D:/GitHub/CircleCI-Test/main.zip")).OpenRead() DEBUG用
